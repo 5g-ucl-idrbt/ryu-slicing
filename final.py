@@ -88,10 +88,6 @@ class TrafficSlicing(app_manager.RyuApp):
         dst_mac = eth.dst
         src_mac = eth.src
         
-
-        dpid = datapath.id
-        print("reached here!!!")
-
         if (pkt.get_protocol(tcp.tcp) and pkt.get_protocol(tcp.tcp).dst_port == 9999):
             
             port = pkt.get_protocol(tcp.tcp).dst_port
@@ -167,7 +163,6 @@ class TrafficSlicing(app_manager.RyuApp):
             actions = [datapath.ofproto_parser.OFPActionOutput(out_port)]
             self.add_flow(datapath, 1, match, actions)
             self._send_package(msg, datapath, in_port, actions)
-	else :
-	    print("reached end")
+
 
 
